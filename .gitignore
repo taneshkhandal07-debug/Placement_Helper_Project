@@ -1,0 +1,49 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Local runtime data & uploads ###
+data/
+uploads/
+scratch/
+
+### React Frontend ###
+react-frontend/node_modules/
+react-frontend/dist/
+react-frontend/.env.local
+react-frontend/.env.*.local
+react-frontend/.node_repl_history
+react-frontend/.vite/
+
+### frontend-maven-plugin downloaded runtimes ###
+react-frontend/node/
