@@ -4,15 +4,17 @@
 
 [![Java Version](https://img.shields.io/badge/Java-21%20LTS-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.3-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.x-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white)](https://www.thymeleaf.org/)
-[![HTMX](https://img.shields.io/badge/HTMX-Instant%20UI-3366CC?style=for-the-badge&logo=htmx&logoColor=white)](https://htmx.org/)
 [![Bootstrap 5](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![Architecture](https://img.shields.io/badge/Architecture-Monolithic%20SSR%20%2B%20HTMX-informational?style=for-the-badge)]()
+[![Architecture](https://img.shields.io/badge/Architecture-Unified%20SSR%20%2B%20React%20SPA-informational?style=for-the-badge)]()
 
 <br/>
 
-**A production-grade, privacy-first university recruitment intelligence engine and placement preparation suite designed for JECRC University students, placed alumni mentors, and institutional placement cell administrators.**
+**A production-grade, unified university platform combining campus recruitment intelligence, student academic ERP, campus recruitment training (CRT), and placement drive duty coordination for JECRC University students, alumni mentors, faculty, and placement cell administrators.**
 
 [📘 Master Documentation](DOCUMENTATION.md) • [📜 Changelog](docs/CHANGELOG.md) • [🏗 Architecture](docs/ARCHITECTURE.md) • [Explore Features](#-feature-matrix--deep-dive) • [Local Setup](#-installation--local-deployment) • [API Routes](#-api--route-catalogue)
 
@@ -22,13 +24,13 @@
 
 ## 📖 Executive Summary & Problem Context
 
-At top universities, campus recruitment knowledge is historically **fragmented and ephemeral**:
+At universities, student academic records, placement training, and campus recruitment operations have historically been **fragmented and disconnected**:
 - **Knowledge Flight**: Graduating seniors leave campus with vital interview insights, round-by-round specifics, and coding questions that are lost each year.
 - **Preparation Blind Spots**: Juniors prepare blindly without historical data on which companies visit in which months, typical round counts, or company-specific cutoffs.
-- **Information Silos**: Unofficial WhatsApp groups and informal spreadsheets lack verification, searchability, and institutional retention.
-- **Placement Cell Overhead**: Coordinating announcement deadlines, validating multi-branch eligibility cutoffs, tracking mock interview slots, and compiling annual placement audit reports requires immense manual labor.
+- **Academic vs. Placement Conflicts**: Drive schedules frequently clash with academic lectures, requiring manual drive-duty attendance exemptions and ad-hoc permission slips.
+- **Information Silos**: Separate ERP systems, WhatsApp groups, and spreadsheets cause disjointed tracking of coursework, attendance, CRT batches, and placement eligibility.
 
-**You_can** solves this systematically by delivering a **centralized institutional platform** that pairs historical recruitment transparency with proactive student preparation tools and automated placement cell governance.
+**Superset Pro** solves this systematically by delivering a **single, unified institutional platform** that pairs historical recruitment intelligence with proactive student preparation tools, Student Academic ERP, Campus Recruitment Training (CRT), and automated placement cell governance.
 
 ---
 
@@ -57,37 +59,36 @@ At top universities, campus recruitment knowledge is historically **fragmented a
 
 ## 🏗️ System Architecture
 
-**You_can** is deliberately engineered as a **modular Server-Side Rendered (SSR) monolithic application** using **Spring Boot 3.4** and **Thymeleaf**, augmented with **HTMX** for instant, reactive single-page app (SPA) performance without the maintenance complexity of a separate JavaScript frontend bundle.
+**Superset Pro** is architected as a **Unified Hybrid Platform** that combines the robustness and SEO speed of **Spring Boot 3.4 + Thymeleaf Server-Side Rendering (SSR)** with the high-reactivity of a **React 18 + TypeScript Single Page Application (SPA)**:
 
 ```mermaid
 flowchart TD
-    subgraph Client["Client Browser (Desktop & Mobile)"]
-        UI["Bootstrap 5.3 + Custom Tokens"]
-        HTMX["HTMX Dynamic Swapping"]
-        AppJS["app.js (Theme, Shortcuts, Nav)"]
+    subgraph Client["Unified Client Experience"]
+        SSR["Thymeleaf SSR Views<br/>(/dashboard, /alumni, /mocks, /admin)"]
+        SPA["React 18 + Vite SPA<br/>(/drives, /erp, /crt, /integration)"]
     end
 
     subgraph Security["Security & Interception Layer"]
         Filter["Spring Security 6 (FilterChain)"]
-        RateLimit["RateLimitService (Sliding Window)"]
-        Auth["BCryptPasswordEncoder + RBAC"]
+        SpaFallback["SpaFallbackController (/drives/**, /erp/**, /crt/**, /integration/**)"]
+        Auth["BCrypt + Session / Cookie RBAC"]
     end
 
     subgraph Application["Spring Boot 3.4 Application Core"]
         direction TB
-        Controllers["Controllers (20 Modules)<br/>Company, Upcoming, Eligibility, Practice, Admin..."]
-        Services["Domain Services (21 Services)<br/>AuditService, ExportService, ImportService, DriveService..."]
-        AIService["AI Engine (AiService / DefaultAiService)<br/>Offline Grounded Synthesis / Gemini 1.5 Flash"]
+        Controllers["Controllers & REST APIs<br/>Auth, Drives, ERP, CRT, Integration, AI..."]
+        Services["Domain Services<br/>ErpService, CrtService, IntegrationService, DriveService..."]
+        AIService["AI Engine (Grounded Synthesis / Gemini 1.5)"]
     end
 
     subgraph Data["Persistence & Integration Layer"]
         JPA["Spring Data JPA / Hibernate"]
-        Flyway["Flyway Migration Engine (V1, V2, V3)"]
+        Flyway["Flyway Migration Engine (V1 through V8)"]
         DB[("PostgreSQL / H2 in Postgres Mode")]
-        Docs["Apache POI (Excel) & OpenPDF / PDFBox"]
+        Docs["Apache POI & OpenPDF Reports"]
     end
 
-    Client -->|HTTP GET/POST / Partial HTMX| Security
+    Client -->|HTTP GET/POST & SPA API calls| Security
     Security --> Controllers
     Controllers --> Services
     Services --> AIService
@@ -98,9 +99,10 @@ flowchart TD
 ```
 
 ### Architectural Highlights
-- **Zero Frontend Build Step**: No Node.js/Webpack build chain required. Pure CSS custom variables, Thymeleaf templates, and HTMX partial fragment swaps (`hx-get`, `hx-target`, `hx-swap="outerHTML"`) handle asynchronous search and filtering under 50ms.
+- **Unified Single-Port Deployment**: Spring Boot serves both traditional server-rendered templates and modern client-side React routes (`/drives`, `/erp`, `/crt`, `/integration`) on a single port (`8080`) without CORS issues.
+- **Consolidated `frontend/` Architecture**: All templates (`templates/`), static styles & assets (`static/`), and React source code (`src/`) reside cleanly in a unified directory with an automated Vite sync pipeline.
 - **PostgreSQL / H2 Parity**: Defaults to embedded file-based H2 in PostgreSQL compatibility mode for instant local testing, seamlessly switching to managed PostgreSQL in production via environment variable injection.
-- **Graceful Offline Degradation**: The entire application, including AI intelligence modules, operates completely offline without external network dependencies.
+- **Graceful Offline Degradation**: The core application, including rule-based eligibility evaluation, timetable clash detection, and AI heuristics, operates completely offline without external network dependencies.
 
 ---
 
@@ -280,10 +282,10 @@ erDiagram
 Core Backend Runtime
 ├── Java 21 LTS (Amazon Corretto / Oracle OpenJDK)
 └── Spring Boot 3.4.3
-    ├── spring-boot-starter-web (REST & MVC)
-    ├── spring-boot-starter-thymeleaf (Server-side rendering)
-    ├── spring-boot-starter-data-jpa (Hibernate ORM)
-    ├── spring-boot-starter-security (Spring Security 6)
+    ├── spring-boot-starter-web (REST APIs & Spring MVC)
+    ├── spring-boot-starter-thymeleaf (Server-side rendered templates)
+    ├── spring-boot-starter-data-jpa (Hibernate 6.6 ORM)
+    ├── spring-boot-starter-security (Spring Security 6 with RBAC)
     ├── spring-boot-starter-validation (Hibernate Validator)
     ├── spring-boot-starter-mail (SMTP mailer)
     └── spring-boot-starter-actuator (Health & metrics)
@@ -291,7 +293,19 @@ Core Backend Runtime
 Database & Migrations
 ├── PostgreSQL (Production Driver)
 ├── H2 Database (In-Memory / File-based PostgreSQL compatibility)
-└── Flyway 10.x (Automated schema migration pipeline)
+└── Flyway 10.x (Automated schema migration pipeline V1–V8)
+
+Modern SPA Frontend (React + Vite)
+├── React 18.3 & React DOM
+├── TypeScript 5.6 & Vite 5.4
+├── React Router 6.28 (Client-side routing)
+└── Axios 1.7 (REST API client with session proxying)
+
+SSR UI & Design System
+├── Thymeleaf Layout Dialect & Extras Spring Security 6
+├── Bootstrap 5.3.3 & Bootstrap Icons 1.11
+├── Professional Dark Theme Design System (Custom CSS tokens)
+└── Vanilla JavaScript ES6+ (app.js)
 
 Document Processing & Utilities
 ├── Apache POI 5.3.0 & poi-ooxml (Excel import/export)
@@ -299,12 +313,6 @@ Document Processing & Utilities
 ├── OpenPDF 2.0.3 (Vector PDF placement reports)
 ├── Apache PDFBox 3.0.3 (Resume text extraction and validation)
 └── Project Lombok 1.18.40 (Boilerplate reduction)
-
-Frontend Interface
-├── Thymeleaf Layout Dialect & Extras Spring Security 6
-├── HTMX 1.9.10 (Instant AJAX search, partial swaps)
-├── Bootstrap 5.3.3 & Bootstrap Icons 1.11
-└── Vanilla JavaScript ES6+ (app.js)
 ```
 
 ---
@@ -312,60 +320,49 @@ Frontend Interface
 ## 📁 Repository & Package Structure
 
 ```text
-Placement_Helper/
-├── .mvn/wrapper/                            # Maven wrapper executable binaries
+SuperSet_Pro/
+├── backend/                                  # Spring Boot Application Root
+│   ├── src/main/java/in/jecrcu/placement/
+│   │   ├── YouCanApplication.java           # Spring Boot application entry point
+│   │   ├── config/                          # SecurityConfig, DataInitializer, UserDetails
+│   │   ├── controller/                      # Web MVC & REST Controllers
+│   │   │   ├── crt/                         # CRT Training REST Controllers
+│   │   │   ├── erp/                         # Student Academic ERP REST Controllers
+│   │   │   ├── integration/                 # Drive Duty Excusals & Timetable Conflict APIs
+│   │   │   ├── AdminController.java         # Placement cell moderation, CRUD & imports
+│   │   │   ├── AlumniController.java        # Alumni mentor directory
+│   │   │   ├── AuthController.java          # Sign In, Registration, Password Reset
+│   │   │   ├── DashboardController.java     # Student personal cockpit
+│   │   │   ├── SpaFallbackController.java   # SPA routing fallback for /drives, /erp, /crt...
+│   │   │   └── ...                          # Company, Mock, Practice, Resume controllers
+│   │   ├── entity/                          # JPA Entities (Placement, ERP, CRT, Integration)
+│   │   ├── repository/                      # Spring Data JPA Repositories
+│   │   └── service/                         # Domain Services (Eligibility, ERP, CRT, Audit...)
+│   └── src/main/resources/
+│       ├── application.properties           # Server config, CORS, datasource & AI flags
+│       └── db/migration/                    # Flyway SQL migrations (V1 through V8)
+├── frontend/                                 # Consolidated Frontend Ecosystem
+│   ├── package.json                         # Node dependencies & Vite build scripts
+│   ├── vite.config.ts                       # Vite dev proxy & automatic static bundle sync
+│   ├── tsconfig.json                        # TypeScript strict bundler configuration
+│   ├── index.html                           # Vite SPA entry template
+│   ├── src/                                 # React SPA Source Code
+│   │   ├── modules/                         # drives, erp, crt, integration
+│   │   ├── pages/                           # LoginPage, DashboardStub, NotFoundPage
+│   │   └── shared/                          # Components, Layout, AuthProvider, ApiClient
+│   ├── templates/                           # Thymeleaf SSR HTML Templates
+│   │   ├── admin/, alumni/, auth/, ...      # View templates for server-rendered routes
+│   │   ├── dashboard.html                   # Central executive placement dashboard
+│   │   └── layout/base.html                 # Master layout shell with unified navigation
+│   └── static/                              # Static Assets served by Spring Boot
+│       ├── css/styles.css                   # Core design tokens, modern dark theme palette
+│       ├── js/app.js                        # Client scripts & theme toggler
+│       ├── index.html                       # Compiled React SPA entry
+│       └── assets/                          # Production bundled JavaScript & CSS chunks
 ├── data/                                    # Local file database directory (git-ignored)
-├── uploads/resumes/                         # Secure resume file storage (git-ignored)
-├── src/
-│   ├── main/
-│   │   ├── java/in/jecrcu/placement/
-│   │   │   ├── YouCanApplication.java       # Spring Boot main entry point
-│   │   │   ├── config/                      # SecurityFilterChain, DataInitializer, CustomUserDetails
-│   │   │   ├── controller/                  # Web Controllers
-│   │   │   │   ├── AdminController.java     # Placement cell moderation, CRUD & imports
-│   │   │   │   ├── AlumniController.java    # Alumni mentor directory
-│   │   │   │   ├── AuthController.java      # Sign In, Registration, Password Reset
-│   │   │   │   ├── BookmarkController.java  # Company and question bookmarks
-│   │   │   │   ├── CalendarController.java  # Recruitment calendar & heatmaps
-│   │   │   │   ├── CompanyController.java   # Directory, HTMX fragments & detail pages
-│   │   │   │   ├── ComparisonController.java# Side-by-side recruiter comparison
-│   │   │   │   ├── ContributeController.java# Experience submission flow
-│   │   │   │   ├── DashboardController.java # Student personal cockpit
-│   │   │   │   ├── EligibilityController.java# Real-time eligibility & What-If simulator
-│   │   │   │   ├── MockInterviewController.java# Slot scheduling and bookings
-│   │   │   │   ├── PracticeController.java  # Interactive question practice mode
-│   │   │   │   ├── QuestionBankController.java# Campus question repository
-│   │   │   │   ├── ResumeController.java    # Resume checklist evaluation
-│   │   │   │   ├── RoadmapController.java   # Custom week-by-week prep roadmaps
-│   │   │   │   ├── StatsController.java     # Placement metrics & analytics
-│   │   │   │   └── UpcomingController.java  # Upcoming drives & registrations
-│   │   │   ├── entity/                      # JPA Entities (Company, Drive, Question, User...)
-│   │   │   │   └── enums/                   # Role, Difficulty, RoundType, Outcome enums
-│   │   │   ├── repository/                  # Spring Data JPA Repositories (21 interfaces)
-│   │   │   └── service/                     # Service Layer
-│   │   │       ├── AuditService.java        # Audit logging engine
-│   │   │       ├── EligibilityService.java  # Multi-factor eligibility algorithm
-│   │   │       ├── ExportService.java       # Excel and PDF generation
-│   │   │       ├── ImportService.java       # CSV and Excel validation & import
-│   │   │       ├── RateLimitService.java    # Sliding-window rate limiter
-│   │   │       └── ai/                      # AI Intelligence Engine
-│   │   │           ├── AiService.java       # AI interface specification
-│   │   │           └── DefaultAiService.java# Grounded synthesis & Gemini client
-│   │   └── resources/
-│   │       ├── application.properties       # Environment configuration & feature flags
-│   │       ├── db/migration/                # Flyway SQL scripts (V1 Schema, V2 Seed, V3 Registrations)
-│   │       ├── static/                      # Static assets
-│   │       │   ├── css/styles.css           # Design tokens, theme palettes, mobile layout
-│   │       │   └── js/app.js                # Theme toggler, shortcuts, back-to-top
-│   │       └── templates/                   # Thymeleaf HTML Templates
-│   │           ├── admin/                   # Admin dashboard, approvals, audit log, imports
-│   │           ├── companies/               # Directory, cards fragment, company details
-│   │           ├── layout/base.html         # Master shell (navbar, mobile bottom nav, footer)
-│   │           └── practice/                # Practice mode and question bank templates
-│   └── test/
-│       └── java/in/jecrcu/placement/        # Service, Security, and Controller test suites
-├── pom.xml                                  # Project Object Model Maven build descriptor
-├── PRD University Placement Portal.md       # Full Product Requirements Document (PRD)
+├── uploads/                                 # Secure uploaded files storage (git-ignored)
+├── pom.xml                                  # Maven project descriptor with frontend profile
+├── vercel.json                              # Vercel SPA deployment configuration
 └── README.md                                # Platform documentation
 ```
 
@@ -374,13 +371,14 @@ Placement_Helper/
 ## ⚡ Installation & Local Deployment
 
 ### 1. Prerequisites
-- **Java 21 JDK** or newer installed (`java -version`)
+- **Java 21 JDK** or newer (`java -version`)
+- **Node.js 20+** and **npm** (`node -v`)
 - **Git** (`git --version`)
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/palakpk954/Placement_Helper-You_Can-.git
-cd Placement_Helper-You_Can-
+git clone https://github.com/taneshkhandal07-debug/SuperSet_Pro.git
+cd SuperSet_Pro
 ```
 
 ### 3. Build & Run
@@ -434,6 +432,19 @@ The database initializes with the following demonstration accounts:
 
 ## 📡 API & Route Catalogue
 
+### Unified SPA Modules (React 18 + TypeScript)
+| Route Path | Type | Access Level | Description |
+|---|---|---|---|
+| `/drives` | SPA View | Authenticated | Live placement drive eligibility evaluation, company details & 1-click registration |
+| `/erp` | SPA View | Authenticated | Student ERP — coursework assignments, assessments, subject-wise attendance & report cards |
+| `/crt` | SPA View | Authenticated | Campus Recruitment Training batches, technical progress milestones & training attendance |
+| `/integration` | SPA View | Authenticated | Placement Drive Duty excusals, schedule conflict detection & timetable synchronization |
+| `/api/drives/**` | REST API | Authenticated | REST endpoints for live drives data and student registration |
+| `/api/erp/**` | REST API | Authenticated | REST endpoints for ERP courses, faculty assignments, attendance & report cards |
+| `/api/crt/**` | REST API | Authenticated | REST endpoints for CRT programs, batches, and student milestones |
+| `/api/integration/**` | REST API | Authenticated | REST endpoints for drive duty exemptions and clash detection |
+
+### Server-Rendered Platform Routes (Thymeleaf SSR)
 | Route Path | HTTP Method | Access Level | Description |
 |---|---|---|---|
 | `/` | `GET` | Public / Student | Redirects to `/dashboard` or home |
@@ -471,7 +482,7 @@ The database initializes with the following demonstration accounts:
 
 ## ⚙️ Configuration Reference
 
-Application configuration resides in [`src/main/resources/application.properties`](file:///c:/Users/HP/Desktop/Placement_Helper/src/main/resources/application.properties) and can be customized via environment variables:
+Application configuration resides in [`backend/src/main/resources/application.properties`](backend/src/main/resources/application.properties) and can be customized via environment variables:
 
 ```properties
 # Web Server
@@ -500,5 +511,6 @@ app.ai.model=${APP_AI_MODEL:gemini-1.5-flash}
 
 ## 📜 Academic Integrity & Attribution
 
-**You_can** was conceived, architected, and built for **JECRC University** students and placement coordinators.  
-Designed to elevate institutional placement outcomes, preserve senior knowledge, and empower every student to achieve their career goals.
+**Superset Pro** was conceived, architected, and built for **JECRC University** students, faculty, and placement coordinators.  
+Designed to unify academic records, elevate institutional placement outcomes, preserve senior knowledge, and empower every student to achieve their career goals.
+
