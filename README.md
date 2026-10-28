@@ -1,4 +1,4 @@
-# You_can — Institutional Campus Placement Intelligence & Preparation Platform
+# Superset Pro — Institutional Campus Placement Intelligence, Student ERP & Preparation Platform
 
 <div align="center">
 

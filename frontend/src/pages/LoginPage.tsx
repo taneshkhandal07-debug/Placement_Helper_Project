@@ -40,7 +40,7 @@ export const LoginPage: React.FC = () => {
     }}>
       <div className="card" style={{ width: '100%', maxWidth: '420px', boxShadow: 'var(--shadow-md)' }}>
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--primary)' }}>You_can</h1>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--primary)' }}>Superset Pro</h1>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginTop: '0.25rem' }}>
             Unified Student Portal & Placement System
           </p>
@@ -92,10 +92,7 @@ export const LoginPage: React.FC = () => {
 
         <div style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
           <p>
-            Standard Thymeleaf login is also available at{' '}
-            <a href="/login" style={{ color: 'var(--primary)', textDecoration: 'none' }}>
-              /login
-            </a>
+            Secure unified authentication with session synchronization.
           </p>
         </div>
       </div>

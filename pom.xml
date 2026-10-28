@@ -9,10 +9,10 @@
 		<relativePath/>
 	</parent>
 	<groupId>in.jecrcu.placement</groupId>
-	<artifactId>youcan</artifactId>
+	<artifactId>superset-pro</artifactId>
 	<version>1.0.0</version>
-	<name>You_can</name>
-	<description>Campus Placement Intelligence &amp; Preparation Portal for JECRC University</description>
+	<name>Superset Pro</name>
+	<description>Superset Pro — Campus Placement Intelligence, Student ERP &amp; CRT Portal for JECRC University</description>
 
 	<properties>
 		<java.version>21</java.version>
@@ -138,6 +138,10 @@
 			</resource>
 			<resource>
 				<directory>frontend</directory>
+				<includes>
+					<include>templates/**</include>
+					<include>static/**</include>
+				</includes>
 			</resource>
 		</resources>
 		<testResources>
@@ -202,7 +206,7 @@
 						<artifactId>frontend-maven-plugin</artifactId>
 						<version>1.15.1</version>
 						<configuration>
-							<workingDirectory>react-frontend</workingDirectory>
+							<workingDirectory>frontend</workingDirectory>
 							<nodeVersion>v20.18.0</nodeVersion>
 							<npmVersion>10.9.0</npmVersion>
 						</configuration>
@@ -244,7 +248,7 @@
 									</outputDirectory>
 									<resources>
 										<resource>
-											<directory>react-frontend/dist</directory>
+											<directory>frontend/dist</directory>
 											<filtering>false</filtering>
 										</resource>
 									</resources>

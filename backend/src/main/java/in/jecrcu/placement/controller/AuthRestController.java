@@ -39,6 +39,16 @@ public class AuthRestController {
     private final AuthenticationManager authenticationManager;
 
     // ---------------------------------------------------------------
+    // GET /api/auth/csrf
+    // Forces population and returns confirmation of the XSRF-TOKEN cookie.
+    // ---------------------------------------------------------------
+    @GetMapping("/csrf")
+    public ResponseEntity<Map<String, String>> getCsrfToken() {
+        // The CsrfCookieFilter populates the XSRF-TOKEN cookie on any request.
+        return ResponseEntity.ok(Map.of("status", "ok"));
+    }
+
+    // ---------------------------------------------------------------
     // GET /api/auth/me
     // Returns the current authenticated user's public profile.
     // Returns 401 if the session has no authenticated principal.
@@ -75,8 +85,9 @@ public class AuthRestController {
     // On success: creates a Spring Security session and returns user info.
     // On failure: returns 401.
     //
-    // CSRF is not required here because /api/** is already excluded
-    // from CSRF checking in SecurityConfig.
+    // /api/auth/login is exempt from CSRF checking in SecurityConfig so
+    // credentials can establish the initial authenticated session.
+    // Subsequent mutating requests require the XSRF-TOKEN header.
     // ---------------------------------------------------------------
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(

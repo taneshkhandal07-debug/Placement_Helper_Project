@@ -91,8 +91,8 @@ public class SecurityConfig {
             if (!origins.isEmpty()) {
                 CorsConfiguration config = new CorsConfiguration();
                 config.setAllowedOrigins(origins);
-                config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-                config.setAllowedHeaders(List.of("Content-Type", "Accept", "X-XSRF-TOKEN"));
+                config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+                config.setAllowedHeaders(List.of("Content-Type", "Accept", "X-XSRF-TOKEN", "X-Requested-With"));
                 config.setAllowCredentials(true); // required for session cookies
                 config.setMaxAge(3600L);
                 source.registerCorsConfiguration("/api/**", config);
@@ -115,6 +115,9 @@ public class SecurityConfig {
                     "/reset-password",
                     "/css/**",
                     "/js/**",
+                    "/assets/**",
+                    "/vite.svg",
+                    "/index.html",
                     "/images/**",
                     "/favicon.ico",
                     "/actuator/**",
@@ -142,8 +145,11 @@ public class SecurityConfig {
                 .permitAll()
             )
             .csrf(csrf -> csrf
-                .ignoringRequestMatchers("/h2-console/**", "/api/**")
+                .csrfTokenRepository(org.springframework.security.web.csrf.CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .csrfTokenRequestHandler(new SpaCsrfTokenRequestHandler())
+                .ignoringRequestMatchers("/h2-console/**", "/api/auth/login")
             )
+            .addFilterAfter(new CsrfCookieFilter(), org.springframework.security.web.csrf.CsrfFilter.class)
             .exceptionHandling(ex -> ex
                 .authenticationEntryPoint((request, response, authException) -> {
                     if (request.getRequestURI().startsWith("/api/")) {
@@ -182,8 +188,54 @@ public class SecurityConfig {
             )
             .headers(headers -> headers
                 .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
+                .contentTypeOptions(org.springframework.security.config.Customizer.withDefaults())
             );
 
         return http.build();
+    }
+
+    /**
+     * SPA CSRF Token Request Handler supporting both standard HTML form XOR tokens
+     * (BREACH defense) and raw SPA X-XSRF-TOKEN request headers (React / Axios).
+     */
+    static final class SpaCsrfTokenRequestHandler implements org.springframework.security.web.csrf.CsrfTokenRequestHandler {
+        private final org.springframework.security.web.csrf.CsrfTokenRequestHandler delegate =
+                new org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler();
+
+        @Override
+        public void handle(jakarta.servlet.http.HttpServletRequest request,
+                           jakarta.servlet.http.HttpServletResponse response,
+                           java.util.function.Supplier<org.springframework.security.web.csrf.CsrfToken> csrfToken) {
+            this.delegate.handle(request, response, csrfToken);
+        }
+
+        @Override
+        public String resolveCsrfTokenValue(jakarta.servlet.http.HttpServletRequest request,
+                                            org.springframework.security.web.csrf.CsrfToken csrfToken) {
+            String headerValue = request.getHeader(csrfToken.getHeaderName());
+            return org.springframework.util.StringUtils.hasText(headerValue)
+                    ? headerValue
+                    : this.delegate.resolveCsrfTokenValue(request, csrfToken);
+        }
+    }
+
+    /**
+     * Filter that forces the deferred CSRF token to be rendered, ensuring that
+     * the XSRF-TOKEN cookie is populated on the HTTP response for Single Page Applications.
+     */
+    static final class CsrfCookieFilter extends org.springframework.web.filter.OncePerRequestFilter {
+        @Override
+        protected void doFilterInternal(jakarta.servlet.http.HttpServletRequest request,
+                                        jakarta.servlet.http.HttpServletResponse response,
+                                        jakarta.servlet.FilterChain filterChain)
+                throws jakarta.servlet.ServletException, java.io.IOException {
+            org.springframework.security.web.csrf.CsrfToken csrfToken =
+                    (org.springframework.security.web.csrf.CsrfToken) request.getAttribute(org.springframework.security.web.csrf.CsrfToken.class.getName());
+            if (csrfToken != null) {
+                // Render the token value to cause the cookie to be populated
+                csrfToken.getToken();
+            }
+            filterChain.doFilter(request, response);
+        }
     }
 }

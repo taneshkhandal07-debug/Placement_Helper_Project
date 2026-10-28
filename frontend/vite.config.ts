@@ -2,9 +2,35 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
+import fs from 'fs';
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: 'copy-to-spring-static',
+      closeBundle() {
+        const distDir = path.resolve(__dirname, 'dist');
+        const staticDir = path.resolve(__dirname, 'static');
+        try {
+          if (fs.existsSync(distDir)) {
+            const distHtml = path.join(distDir, 'index.html');
+            if (fs.existsSync(distHtml)) {
+              fs.copyFileSync(distHtml, path.join(staticDir, 'index.html'));
+            }
+            const distAssets = path.join(distDir, 'assets');
+            const staticAssets = path.join(staticDir, 'assets');
+            if (fs.existsSync(distAssets)) {
+              fs.cpSync(distAssets, staticAssets, { recursive: true });
+            }
+          }
+        } catch (err) {
+          console.warn('[vite-copy-plugin] Could not sync to static:', err);
+        }
+      },
+    },
+  ],
 
   resolve: {
     alias: {

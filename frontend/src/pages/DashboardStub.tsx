@@ -86,13 +86,13 @@ export const DashboardStub: React.FC = () => {
               </Link>
             </div>
             <div className="card">
-              <h3>Thymeleaf Legacy App</h3>
+              <h3>Administration & Legacy Portals</h3>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: '0.5rem 0 1rem 0' }}>
-                All existing server-side rendered placement features remain active and unmodified.
+                Administrative workflows and legacy features are preserved on the backend and scheduled for client migration in Phase 10+.
               </p>
-              <a href="/dashboard" className="btn btn-secondary" style={{ fontSize: '0.85rem' }}>
-                Open Thymeleaf Portal
-              </a>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                Phase 10: Admin Command Center Migration
+              </div>
             </div>
           </div>
         </div>

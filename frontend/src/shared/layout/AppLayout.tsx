@@ -41,7 +41,7 @@ export const AppLayout: React.FC = () => {
             ☰
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, color: 'var(--primary)', fontSize: '1.2rem' }}>
-            <span>You_can</span>
+            <span>Superset Pro</span>
           </div>
         </div>
 
@@ -88,11 +88,11 @@ export const AppLayout: React.FC = () => {
             <Navigation />
           </div>
 
-          {/* Quick link to legacy Thymeleaf */}
+          {/* Quick link to main Placement Dashboard */}
           <div style={{ padding: '0.75rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.35rem' }}>Legacy Portal</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.35rem' }}>Placement Portal</div>
             <a href="/dashboard" style={{ fontSize: '0.825rem', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}>
-              Thymeleaf Portal ↗
+              ← Return to Dashboard
             </a>
           </div>
         </aside>
@@ -122,7 +122,7 @@ export const AppLayout: React.FC = () => {
             >
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontWeight: 700, color: 'var(--primary)' }}>You_can</span>
+                  <span style={{ fontWeight: 700, color: 'var(--primary)' }}>Superset Pro</span>
                   <button onClick={() => setMobileNavOpen(false)} style={{ background: 'none', border: 'none', fontSize: '1.25rem' }}>✕</button>
                 </div>
                 <Navigation onItemClick={() => setMobileNavOpen(false)} />

@@ -1,8 +1,8 @@
 {
-  "name": "youcan-react",
+  "name": "superset-pro",
   "private": true,
-  "version": "0.1.0",
-  "description": "React frontend for You_can — JECRC University Placement Portal",
+  "version": "1.0.0",
+  "description": "React frontend for Superset Pro — JECRC University Unified Student & Placement Portal",
   "type": "module",
   "scripts": {
     "dev": "vite",

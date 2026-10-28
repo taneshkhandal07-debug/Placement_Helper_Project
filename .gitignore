@@ -37,13 +37,18 @@ data/
 uploads/
 scratch/
 
-### React Frontend ###
-react-frontend/node_modules/
-react-frontend/dist/
-react-frontend/.env.local
-react-frontend/.env.*.local
-react-frontend/.node_repl_history
-react-frontend/.vite/
+### Frontend (React & Node) ###
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+frontend/.node_repl_history
+frontend/.vite/
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
+*.tsbuildinfo
+
 
 ### frontend-maven-plugin downloaded runtimes ###
-react-frontend/node/
+frontend/node/

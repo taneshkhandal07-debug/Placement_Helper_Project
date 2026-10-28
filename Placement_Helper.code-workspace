@@ -13,6 +13,10 @@
 			"path": "frontend/static"
 		},
 		{
+			"name": "⚛️ React SPA (TypeScript, Pages & Modules)",
+			"path": "frontend/src"
+		},
+		{
 			"name": "⚙️ Config & Database Migrations",
 			"path": "backend/src/main/resources"
 		},
