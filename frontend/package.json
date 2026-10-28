@@ -3,6 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "description": "React frontend for Superset Pro — JECRC University Unified Student & Placement Portal",
+  "author": "Tanesh Khandal <https://github.com/taneshkhandal07-debug>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taneshkhandal07-debug/SuperSet_Pro.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

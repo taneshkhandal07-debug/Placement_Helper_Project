@@ -175,5 +175,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Initial Setup] - 2026-10-15 - Project Genesis & Git Sync
 
 ### Added
-- Initialized local Git repository and synchronized with GitHub remote `palakpk954/Placement_Helper-You_Can-`.
+- Initialized local Git repository and synchronized with GitHub remote `taneshkhandal07-debug/SuperSet_Pro`.
 - Overhauled [`README.md`](../README.md) with comprehensive system architecture, ER diagrams, security model, and API route tables.
+

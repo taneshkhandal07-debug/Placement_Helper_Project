@@ -39,10 +39,11 @@ Whenever changes or new features are introduced to the repository, this file and
 
 | Attribute | Specification |
 | :--- | :--- |
-| **Project Name** | **You_can — JECRC University Placement Portal** |
-| **Repository** | [`palakpk954/Placement_Helper-You_Can-`](https://github.com/palakpk954/Placement_Helper-You_Can-) |
-| **Target Audience** | Students (pre-final & final year), Placed Alumni Mentors, Placement Cell Admins |
-| **Primary Mission** | Democratize campus placement intelligence through verified past interview experiences, dynamic eligibility computation, upcoming drive tracking, and strictly grounded AI assistance. |
+| **Project Name** | **Superset Pro — JECRC University Unified Student & Placement Platform** |
+| **Author & Creator** | **Tanesh Khandal** ([@taneshkhandal07-debug](https://github.com/taneshkhandal07-debug)) |
+| **Repository** | [`taneshkhandal07-debug/SuperSet_Pro`](https://github.com/taneshkhandal07-debug/SuperSet_Pro) |
+| **Target Audience** | Students, Faculty, Placed Alumni Mentors, Placement Cell Admins |
+| **Primary Mission** | Unified institutional platform integrating campus recruitment intelligence, student academic ERP, CRT training, and placement duty synchronization. |
 
 ### Core Tenets
 1. **100% Grounded Intelligence (Anti-Hallucination)**: The AI assistant and summarization modules only answer from verified campus records (hiring drives, rounds, questions, packages, mentor profiles). No fabricated cutoffs or invented rounds.
@@ -95,13 +96,12 @@ Whenever changes or new features are introduced to the repository, this file and
 ---
 
 ### Sprint 0: Repository Setup & Git Synchronization
-- **Goal**: Establish a clean Git repository, synchronize with the remote GitHub repository ([`palakpk954/Placement_Helper-You_Can-`](https://github.com/palakpk954/Placement_Helper-You_Can-)), and resolve remote divergence cleanly.
+- **Goal**: Establish a clean Git repository, synchronize with the remote GitHub repository ([`taneshkhandal07-debug/SuperSet_Pro`](https://github.com/taneshkhandal07-debug/SuperSet_Pro)), and resolve remote divergence cleanly.
 - **Actions Taken**:
-  - Initialized local Git repository in `c:\Users\HP\Desktop\Placement_Helper`.
-  - Added remote origin `https://github.com/palakpk954/Placement_Helper-You_Can-.git`.
+  - Initialized local Git repository.
+  - Added remote origin `https://github.com/taneshkhandal07-debug/SuperSet_Pro.git`.
   - Staged essential source files, `.gitignore`, and configuration.
-  - Fetched and rebased remote `main` branch to integrate the initial GitHub README.
-  - Pushed initial commit (`a2ff7e9`).
+  - Rebased and synchronized initial commit cleanly.
 
 ---
 

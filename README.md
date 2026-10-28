@@ -11,10 +11,11 @@
 [![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.x-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white)](https://www.thymeleaf.org/)
 [![Bootstrap 5](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![Architecture](https://img.shields.io/badge/Architecture-Unified%20SSR%20%2B%20React%20SPA-informational?style=for-the-badge)]()
+[![Author](https://img.shields.io/badge/Author-Tanesh%20Khandal-blue?style=for-the-badge&logo=github)](https://github.com/taneshkhandal07-debug)
 
 <br/>
 
-**A production-grade, unified university platform combining campus recruitment intelligence, student academic ERP, campus recruitment training (CRT), and placement drive duty coordination for JECRC University students, alumni mentors, faculty, and placement cell administrators.**
+**A production-grade, unified university platform conceived, architected, and engineered by [Tanesh Khandal](https://github.com/taneshkhandal07-debug) for JECRC University — combining campus recruitment intelligence, student academic ERP, campus recruitment training (CRT), and placement drive duty coordination.**
 
 [📘 Master Documentation](DOCUMENTATION.md) • [📜 Changelog](docs/CHANGELOG.md) • [🏗 Architecture](docs/ARCHITECTURE.md) • [Explore Features](#-feature-matrix--deep-dive) • [Local Setup](#-installation--local-deployment) • [API Routes](#-api--route-catalogue)
 
@@ -509,8 +510,20 @@ app.ai.model=${APP_AI_MODEL:gemini-1.5-flash}
 
 ---
 
+## 👤 Author & Project Ownership
+
+**Conceived, Architected & Solely Developed by:**  
+**Tanesh Khandal**  
+- **GitHub**: [@taneshkhandal07-debug](https://github.com/taneshkhandal07-debug)  
+- **Official Repository**: [https://github.com/taneshkhandal07-debug/SuperSet_Pro](https://github.com/taneshkhandal07-debug/SuperSet_Pro)  
+- **Institution**: JECRC University  
+
+*Superset Pro is an original, standalone institutional platform exclusively engineered and maintained by Tanesh Khandal. All design architecture, source code, data models, and feature implementations belong solely to this project and repository.*
+
+---
+
 ## 📜 Academic Integrity & Attribution
 
-**Superset Pro** was conceived, architected, and built for **JECRC University** students, faculty, and placement coordinators.  
+**Superset Pro** was conceived, architected, and built by **Tanesh Khandal** for **JECRC University** students, faculty, and placement coordinators.  
 Designed to unify academic records, elevate institutional placement outcomes, preserve senior knowledge, and empower every student to achieve their career goals.
 
