@@ -6,6 +6,7 @@ uploads/
 .vscode/
 *.log
 .mvn/wrapper/maven-wrapper.jar
-react-frontend/node_modules/
-react-frontend/node/
-react-frontend/.env.local
+frontend/node_modules/
+frontend/node/
+frontend/.env.local
+docs/

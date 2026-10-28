@@ -1,5 +1,5 @@
 # ==============================================================
-# Dockerfile for You_can — JECRC University Placement Portal
+# Dockerfile for SuperSet Pro — JECRC University Placement Portal
 # Multi-stage build optimized for Render / Cloud deployments (Java 21)
 # ==============================================================
 
@@ -21,15 +21,15 @@ FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 
 # Create a non-root application user for container security
-RUN groupadd -r youcan && useradd -r -g youcan youcan
+RUN groupadd -r appuser && useradd -r -g appuser appuser
 
 # Copy the compiled executable JAR from the builder stage
-COPY --from=build /app/target/youcan-1.0.0.jar app.jar
+COPY --from=build /app/target/superset-pro.jar app.jar
 
 # Create directory for persistent embedded database and upload storage
-RUN mkdir -p data uploads/resumes && chown -R youcan:youcan /app
+RUN mkdir -p data uploads/resumes && chown -R appuser:appuser /app
 
-USER youcan
+USER appuser
 
 # Render sets the $PORT environment variable dynamically (defaults to 8080 locally)
 ENV PORT=8080
