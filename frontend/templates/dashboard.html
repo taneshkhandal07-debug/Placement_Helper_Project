@@ -50,7 +50,7 @@
                     </div>
                     <div>
                         <div class="d-flex align-items-center gap-2 mb-1">
-                            <h4 class="fw-bold mb-0" th:text="${currentUser != null ? currentUser.fullName : 'JECRC User'}">Rahul Sharma</h4>
+                            <h4 class="fw-bold mb-0" th:text="${currentUser != null ? currentUser.fullName : 'JECRC User'}">Tanesh Khandal</h4>
                             <span class="badge badge-soft-primary" sec:authorize="hasRole('STUDENT')" th:text="${currentUser != null ? currentUser.branch : 'CSE'}">CSE</span>
                             <span class="badge badge-soft-danger" sec:authorize="hasRole('ADMIN')">Placement Coordinator (Admin)</span>
                             <span class="badge badge-soft-info" sec:authorize="hasRole('ALUMNI')">Alumni Mentor</span>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="small text-muted d-flex flex-wrap gap-3" th:if="${isAdminPreview or #authorization.expression('hasRole(''STUDENT'')')}">
                             <span><i class="bi bi-mortarboard me-1"></i> Graduating: <strong th:text="${currentUser != null ? currentUser.graduationYear : '2026'}">2026</strong></span>
-                            <span><i class="bi bi-star-fill text-warning me-1"></i> CGPA: <strong th:text="${currentUser != null ? currentUser.cgpa : '7.50'}">8.45</strong></span>
+                            <span><i class="bi bi-star-fill text-warning me-1"></i> CGPA: <strong th:text="${currentUser != null ? currentUser.cgpa : '7.50'}">7.69</strong></span>
                             <span><i class="bi bi-exclamation-circle me-1"></i> Backlogs: <strong th:text="${currentUser != null ? currentUser.activeBacklogs : '0'}">0</strong></span>
                         </div>
                         <div class="small text-muted d-flex flex-wrap gap-3" sec:authorize="hasRole('ALUMNI')" th:if="${!isAdminPreview}">
