@@ -59,7 +59,7 @@
                             </span>
                         </div>
                         <div class="small text-muted d-flex flex-wrap gap-3" th:if="${isAdminPreview or #authorization.expression('hasRole(''STUDENT'')')}">
-                            <span><i class="bi bi-mortarboard me-1"></i> Graduating: <strong th:text="${currentUser != null ? currentUser.graduationYear : '2026'}">2026</strong></span>
+                            <span><i class="bi bi-mortarboard me-1"></i> Graduating: <strong th:text="${currentUser != null ? currentUser.graduationYear : '2027'}">2027</strong></span>
                             <span><i class="bi bi-star-fill text-warning me-1"></i> CGPA: <strong th:text="${currentUser != null ? currentUser.cgpa : '7.50'}">7.69</strong></span>
                             <span><i class="bi bi-exclamation-circle me-1"></i> Backlogs: <strong th:text="${currentUser != null ? currentUser.activeBacklogs : '0'}">0</strong></span>
                         </div>

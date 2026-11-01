@@ -47,7 +47,7 @@ public class DataInitializer implements CommandLineRunner {
         try {
             jdbcTemplate.update("UPDATE users SET role = 'ROLE_ADMIN' WHERE LOWER(email) = 'admin@jecrcu.edu.in'");
             jdbcTemplate.update("UPDATE users SET role = 'ROLE_STUDENT' WHERE LOWER(email) IN ('rahul.sharma@jecrcu.edu.in', 'priya.verma@jecrcu.edu.in')");
-            jdbcTemplate.update("UPDATE users SET full_name = 'Tanesh Khandal', cgpa = 7.69 WHERE LOWER(email) = 'rahul.sharma@jecrcu.edu.in'");
+            jdbcTemplate.update("UPDATE users SET full_name = 'Tanesh Khandal', cgpa = 7.69, graduation_year = 2027 WHERE LOWER(email) = 'rahul.sharma@jecrcu.edu.in'");
             jdbcTemplate.update("UPDATE users SET role = 'ROLE_ALUMNI' WHERE LOWER(email) IN ('alumni.amit@jecrcu.edu.in', 'sneha.patel@jecrcu.edu.in', 'rohit.meena@jecrcu.edu.in')");
             jdbcTemplate.update("UPDATE users SET role = 'ROLE_FACULTY' WHERE LOWER(email) = 'faculty.sharma@jecrcu.edu.in'");
             jdbcTemplate.update("DELETE FROM alumni_profiles WHERE user_id IN (SELECT id FROM users WHERE role = 'ROLE_STUDENT')");
