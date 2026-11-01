@@ -46,8 +46,8 @@ public class DataInitializer implements CommandLineRunner {
         // 2. Unconditionally normalize roles and clean up any student alumni profiles in database
         try {
             jdbcTemplate.update("UPDATE users SET role = 'ROLE_ADMIN' WHERE LOWER(email) = 'admin@jecrcu.edu.in'");
-            jdbcTemplate.update("UPDATE users SET role = 'ROLE_STUDENT' WHERE LOWER(email) IN ('rahul.sharma@jecrcu.edu.in', 'priya.verma@jecrcu.edu.in')");
-            jdbcTemplate.update("UPDATE users SET full_name = 'Tanesh Khandal', cgpa = 7.69, graduation_year = 2027 WHERE LOWER(email) = 'rahul.sharma@jecrcu.edu.in'");
+            jdbcTemplate.update("UPDATE users SET role = 'ROLE_STUDENT' WHERE LOWER(email) IN ('tanesh.23bcon1719@jecrcu.edu.in', 'rahul.sharma@jecrcu.edu.in', 'priya.verma@jecrcu.edu.in')");
+            jdbcTemplate.update("UPDATE users SET full_name = 'Tanesh Khandal', cgpa = 7.69, graduation_year = 2027, email = 'tanesh.23bcon1719@jecrcu.edu.in' WHERE LOWER(email) IN ('rahul.sharma@jecrcu.edu.in', 'tanesh.23bcon1719@jecrcu.edu.in')");
             jdbcTemplate.update("UPDATE users SET role = 'ROLE_ALUMNI' WHERE LOWER(email) IN ('alumni.amit@jecrcu.edu.in', 'sneha.patel@jecrcu.edu.in', 'rohit.meena@jecrcu.edu.in')");
             jdbcTemplate.update("UPDATE users SET role = 'ROLE_FACULTY' WHERE LOWER(email) = 'faculty.sharma@jecrcu.edu.in'");
             jdbcTemplate.update("DELETE FROM alumni_profiles WHERE user_id IN (SELECT id FROM users WHERE role = 'ROLE_STUDENT')");
@@ -58,7 +58,7 @@ public class DataInitializer implements CommandLineRunner {
                 String expectedPassword = "password123";
                 if ("admin@jecrcu.edu.in".equalsIgnoreCase(user.getEmail())) {
                     expectedPassword = "admin123";
-                } else if ("rahul.sharma@jecrcu.edu.in".equalsIgnoreCase(user.getEmail()) ||
+                } else if ("tanesh.23bcon1719@jecrcu.edu.in".equalsIgnoreCase(user.getEmail()) || "rahul.sharma@jecrcu.edu.in".equalsIgnoreCase(user.getEmail()) ||
                            "priya.verma@jecrcu.edu.in".equalsIgnoreCase(user.getEmail())) {
                     expectedPassword = "student123";
                 } else if ("alumni.amit@jecrcu.edu.in".equalsIgnoreCase(user.getEmail()) ||
