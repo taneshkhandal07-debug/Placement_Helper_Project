@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Superset Pro - JECRC University Unified Student Platform</title>
+    <title>Superset Pro — JECRC University Placement &amp; Academic Platform</title>
+    
+    <!-- Theme Pre-Hydration to prevent theme flash -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('youcan-theme') || 'light';
+          document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
