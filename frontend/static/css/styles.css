@@ -220,6 +220,34 @@ a:hover {
     border: 1px solid rgba(59, 130, 246, 0.25);
 }
 
+/* Unified Ecosystem Modules Panel */
+.unified-ecosystem-card {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(14, 165, 233, 0.03) 100%);
+    border: 1px solid var(--border-color);
+}
+[data-bs-theme="dark"] .unified-ecosystem-card {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(14, 165, 233, 0.06) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.unified-module-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.unified-module-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(59, 130, 246, 0.35);
+}
+[data-bs-theme="dark"] .unified-module-card {
+    background-color: var(--bg-surface-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+[data-bs-theme="dark"] .unified-module-card:hover {
+    border-color: rgba(59, 130, 246, 0.45);
+}
+
 /* Executive Metric Widget */
 .stat-widget {
     padding: 1.15rem 1.25rem;
