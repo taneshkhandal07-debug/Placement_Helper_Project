@@ -9,7 +9,7 @@
 -- Note: DataInitializer also ensures password compatibility on startup!
 INSERT INTO users (id, email, password, full_name, branch, graduation_year, cgpa, active_backlogs, role, email_verified, points) VALUES
 (1, 'admin@jecrcu.edu.in', '$2a$10$wT6qUaQ/lF82lJk7E7p5CeG4y4vjC0Z9e3L4VqX9z9KkP3l2Z4g3m', 'Placement Cell Admin', 'CSE', 2022, 9.10, 0, 'ROLE_ADMIN', TRUE, 500),
-(2, 'rahul.sharma@jecrcu.edu.in', '$2a$10$wT6qUaQ/lF82lJk7E7p5CeG4y4vjC0Z9e3L4VqX9z9KkP3l2Z4g3m', 'Tanesh Khandal', 'CSE', 2026, 7.69, 0, 'ROLE_STUDENT', TRUE, 85),
+(2, 'rahul.sharma@jecrcu.edu.in', '$2a$10$wT6qUaQ/lF82lJk7E7p5CeG4y4vjC0Z9e3L4VqX9z9KkP3l2Z4g3m', 'Rahul Sharma', 'CSE', 2026, 8.45, 0, 'ROLE_STUDENT', TRUE, 85),
 (3, 'priya.verma@jecrcu.edu.in', '$2a$10$wT6qUaQ/lF82lJk7E7p5CeG4y4vjC0Z9e3L4VqX9z9KkP3l2Z4g3m', 'Priya Verma', 'IT', 2026, 7.80, 0, 'ROLE_STUDENT', TRUE, 40),
 (4, 'alumni.amit@jecrcu.edu.in', '$2a$10$wT6qUaQ/lF82lJk7E7p5CeG4y4vjC0Z9e3L4VqX9z9KkP3l2Z4g3m', 'Amit Kumar', 'CSE', 2024, 8.90, 0, 'ROLE_STUDENT', TRUE, 260),
 (5, 'sneha.patel@jecrcu.edu.in', '$2a$10$wT6qUaQ/lF82lJk7E7p5CeG4y4vjC0Z9e3L4VqX9z9KkP3l2Z4g3m', 'Sneha Patel', 'ECE', 2024, 8.65, 0, 'ROLE_STUDENT', TRUE, 190),
